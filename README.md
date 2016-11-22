@@ -1,7 +1,7 @@
 # range_ping
-### Using
+Ping the specified range
 
-
+## Using
 
 ======================
 ```
