@@ -4,6 +4,7 @@ import sys
 import time
 import ipaddress
 import os
+import re
 
 def setting_ip():
 	start_ip = str(input("start_ip:"))
@@ -17,15 +18,16 @@ def setting_ip():
 def setting_cmd(target_ip = setting_ip()):
 	cmd = []
 	for n in target_ip:
-		target_path = str("ping -c 1 " + n)
+		target_path = str("ping -c 1 " + n +" > /dev/null 2>&1")
 		cmd.append(target_path)
 	return cmd
 
 
 
 def task_route(cmd = setting_cmd()):
-	pro_list=[]
-	for n in cmd:
+	pro_list=[[]]
+	print("========実行中========")
+	for i,n in enumerate(cmd):
 		cmd_chk = os.system(n)
 		sys.stdout.flush()
 		if cmd_chk == 0:
@@ -39,10 +41,10 @@ def task_route(cmd = setting_cmd()):
 def main():
 	chk = task_route()
 	cmd = setting_cmd()
-	for cmd,c in zip(cmd,chk):
-		print(cmd[10:],c)
+	for cmd,c in zip(cmd,chk[1:]):
+		print(cmd[10:20],c)
 		sys.stdout.flush()
-
+	print("=========終了=========")
 
 	
 if __name__ == '__main__':
