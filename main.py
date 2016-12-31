@@ -8,7 +8,7 @@ import re
 
 def setting_ip():
     start_ip = str(input("start_ip:"))
-    range_ip = input("range_ip:")
+    range_ip = int(input("range_ip:"))
     set_ip = []
     for n in range(int(range_ip)):
         target_ip = str(ipaddress.IPv4Address(start_ip) + n)
@@ -32,8 +32,7 @@ def task_route(cmd = setting_cmd()):
         if cmd_chk == 0:
             pro_list.append("OK")
         else:
-            pro_list.append("OK")
-
+            pro_list.append("NG")
     return pro_list
 
 
